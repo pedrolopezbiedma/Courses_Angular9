@@ -1,4 +1,11 @@
-<h5>This is the servers component</h5>
+<label>Server Name</label>
+<input type="text" class="form-control"
+    [(ngModel)]='serverName'>
+
+<button class="btn btn-primary" 
+    [disabled]="getAddNewServerStatus()"
+    (click)="onServerCreation()">Add Server</button>
+<p> {{ creationStatus }}</p>
 <hr>
 
 <app-server></app-server>
