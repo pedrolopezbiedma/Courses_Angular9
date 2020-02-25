@@ -2,13 +2,18 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-server',
-    templateUrl: './server.component.html'
+    templateUrl: './server.component.html',
+    styleUrls: ['./server.component.css']
 })
 export class ServerComponent {
     serverID = 10;
-    serverStatus = 'Offline';
+    serverStatus = '';
 
-    getServerStatus() {
-        return this.serverStatus;
+    constructor(){
+        this.serverStatus = Math.random() > 0.5 ? 'Online' : 'Offline';
+    }
+
+    getServerColor() {
+        return this.serverStatus === 'Online' ? 'green' : 'red';
     }
 }

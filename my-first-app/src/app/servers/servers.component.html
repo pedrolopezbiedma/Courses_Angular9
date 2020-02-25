@@ -3,20 +3,9 @@
     [(ngModel)]='serverName'>
 
 <button class="btn btn-primary" 
-    [disabled]="getAddNewServerStatus()"
+    [disabled]="addNewServerStatus"
     (click)="onServerCreation()">Add Server</button>
-<p> {{ creationStatus }}</p>
+<p *ngIf="serverCreated"> Server was created, server name is {{ serverName }}</p>
 <hr>
 
-<label>Server owner</label>
-<input type="text" class="form-control"
-    [(ngModel)] = "serverOwner">
-<p> {{ serverOwner }}</p>
-
-<button class="btn btn-primary"
-    [disabled]="serverOwner === ''"
-    (click)="onResetServerOwner()">Clear User</button>
-<hr>
-
-<app-server></app-server>
-<app-server></app-server>
+<app-server *ngFor="let server of servers"></app-server>

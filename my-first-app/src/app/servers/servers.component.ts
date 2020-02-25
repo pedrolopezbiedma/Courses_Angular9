@@ -5,28 +5,15 @@ import { Component } from '@angular/core';
   templateUrl: './servers.component.html'
 })
 export class ServersComponent {
-  addNewServerStatus = false;
-  creationStatus = '';
+  servers = ['Test server 1', 'Test server 2'];
   serverName = '';
-  serverOwner = '';
 
-  getAddNewServerStatus() {
-    return this.addNewServerStatus;
-  }
+  addNewServerStatus = false;
+  serverCreated = false;
+
   onServerCreation() {
-    this.creationStatus = 'The server ' + this.serverName + ' was created';
+    this.serverCreated = true;
+    this.servers.push(this.serverName);
   }
-
-  getClearButtonStatus() {
-    if (this.serverOwner === '') {
-      return true;
-    } else {
-      return false;
-    }
-  }
-  onResetServerOwner() {
-    this.serverOwner = '';
-  }
-
 
 }
