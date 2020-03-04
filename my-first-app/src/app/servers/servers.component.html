@@ -9,3 +9,13 @@
 <hr>
 
 <app-server *ngFor="let server of servers"></app-server>
+
+<button
+    class="btn btn-primary" 
+    (click)="onDisplayDetailsClicked()">Display Details</button>
+<p *ngIf="secretShown">Secret Password = 'Tuna'</p>
+<ul>
+    <li *ngFor="let event of eventsArray; let i = index" 
+    [ngStyle]="{backgroundColor: i >= 5 ? 'blue' : 'white'}"
+    [ngClass]="{objective: i >= 5}">{{event}}</li>
+</ul>
