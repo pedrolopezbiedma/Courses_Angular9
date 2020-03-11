@@ -6,5 +6,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'assignment-section5';
+  emittedEvents = [];
+  gameStopped = false;
+
+  onEventReceived(receivedEvent){
+    this.emittedEvents.push({
+      type: receivedEvent.type,
+      id: receivedEvent.id
+    });
+  }
+
+  onGameStoppedReceived(gameStoppedReceived){
+    this.gameStopped = gameStoppedReceived.gameStopped;
+  }
 }
