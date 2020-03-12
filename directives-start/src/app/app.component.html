@@ -17,4 +17,11 @@
   </div>
   <p appBasicHighlight>Hey there directive!</p>
   <p appBetterHighlight>Hey there directive!</p>
+  <p *appOnlyTrue='onlyOdd'>Hey custom structural directive!</p>
+
+  <div [ngSwitch]="value">
+    <div *ngSwitchCase="5">Valor es 5</div>
+    <div *ngSwitchCase="10">Valor es 10</div>
+    <div *ngSwitchDefault>Valor es default</div>
+  </div>
 </div>
