@@ -20,4 +20,11 @@ export class IngredientsService {
         this.ingredients.push(newIngredient);
         this.ingredientAdded.emit(this.ingredients);
     }
+
+    addIngredientsFromRecipe(ingredients: Ingredient[]){
+        ingredients.forEach(ingredient => {
+            this.ingredients.push(ingredient);
+        })
+        this.ingredientAdded.emit(this.ingredients);
+    }
 }
