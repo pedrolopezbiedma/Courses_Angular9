@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-navbar',
@@ -8,11 +8,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 
 export class NavbarComponent {
     title = 'Navbar';
-    @Output() itemPressed = new EventEmitter<string>();
 
     constructor() { }
 
-    onItemPressed(item){
-        this.itemPressed.emit(item);
-    }
 }

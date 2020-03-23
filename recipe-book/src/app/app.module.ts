@@ -10,6 +10,7 @@ import { RecipeDetailComponent } from './recipe-book/recipe-detail/recipe-detail
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { ToggleDropdownDirective } from './directives/ToggleDropdown/toggle-dropdown.directive';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ToggleDropdownDirective } from './directives/ToggleDropdown/toggle-drop
     ToggleDropdownDirective
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
