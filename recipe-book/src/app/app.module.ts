@@ -12,6 +12,7 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { ToggleDropdownDirective } from './directives/ToggleDropdown/toggle-dropdown.directive';
 import { NoRecipeSelectedComponent } from './recipe-book/no-recipe-selected/no-recipe-selected.component';
+import { RecipeEditComponent } from './recipe-book/recipe-edit/recipe-edit.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { NoRecipeSelectedComponent } from './recipe-book/no-recipe-selected/no-r
     ShoppingListComponent,
     ShoppingEditComponent,
     ToggleDropdownDirective,
-    NoRecipeSelectedComponent
+    NoRecipeSelectedComponent,
+    RecipeEditComponent
   ],
   imports: [
     BrowserModule,
