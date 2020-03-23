@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -10,7 +11,7 @@ import { RecipeDetailComponent } from './recipe-book/recipe-detail/recipe-detail
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { ToggleDropdownDirective } from './directives/ToggleDropdown/toggle-dropdown.directive';
-import { AppRoutingModule } from './app-routing.module';
+import { NoRecipeSelectedComponent } from './recipe-book/no-recipe-selected/no-recipe-selected.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AppRoutingModule } from './app-routing.module';
     RecipeDetailComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
-    ToggleDropdownDirective
+    ToggleDropdownDirective,
+    NoRecipeSelectedComponent
   ],
   imports: [
     BrowserModule,
