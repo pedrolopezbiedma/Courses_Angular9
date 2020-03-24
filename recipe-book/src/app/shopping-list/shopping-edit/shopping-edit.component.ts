@@ -13,6 +13,5 @@ export class ShoppingEditComponent  {
 
     onIngredientAdded(nameInput, amountInput){
         this.ingredientsService.addIngredient({name: nameInput.value, amount: amountInput.value})
-        //this.ingredientAdded.emit({name: nameInput.value, amount: amountInput.value});
     }
 }
