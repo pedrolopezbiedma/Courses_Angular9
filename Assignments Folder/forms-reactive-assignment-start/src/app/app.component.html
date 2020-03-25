@@ -14,6 +14,21 @@
 
           Upon submitting the form, simply print the value to the console
       -->
+      <form [formGroup]='myForm' (ngSubmit)='onSubmit()'>
+        <label for="projectName">Project Name:</label>
+        <input type="text" class="form-control" formControlName="projectName">
+        <span *ngIf="!myForm.get('projectName').valid && myForm.get('projectName').touched">Mal!!!</span>
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" formControlName="email">
+        <span *ngIf="!myForm.get('email').valid && myForm.get('email').touched">Mal!!!</span>
+        <label for="status">Status:</label>
+        <select id="status"
+                name='status'
+                class="form-control" formControlName="status">
+          <option *ngFor="let status of statusArray"[value]='status'>{{ status }}</option>
+        </select>
+        <button type="submit">Submit</button>
+      </form>
     </div>
   </div>
 </div>
