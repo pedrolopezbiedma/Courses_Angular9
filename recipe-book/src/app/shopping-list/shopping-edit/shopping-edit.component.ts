@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 import { IngredientsService } from 'src/app/services/ingredients.service';
 
@@ -9,9 +10,11 @@ import { IngredientsService } from 'src/app/services/ingredients.service';
 })
 
 export class ShoppingEditComponent  {
+    @ViewChild('newIngredientForm') form: NgForm;
+
     constructor(private ingredientsService: IngredientsService) { }
 
-    onIngredientAdded(nameInput, amountInput){
-        this.ingredientsService.addIngredient({name: nameInput.value, amount: amountInput.value})
+    onIngredientAdded(){
+        this.ingredientsService.addIngredient({name: this.form.value.name, amount: this.form.value.amount})
     }
 }
