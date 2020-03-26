@@ -12,21 +12,24 @@ import { IngredientsService } from '../services/ingredients.service';
 
 export class ShoppingListComponent implements OnInit, OnDestroy{
     ingredients: Ingredient[] = [ ];
-    private igChangesub: Subscription;
+    private ingredientAddedSubscription: Subscription;
     
     constructor(private ingredientsService: IngredientsService) { }
 
     ngOnInit(){
         this.ingredients = this.ingredientsService.getIngredients();
-        //this.ingredientsService.ingredientAdded
-        this.igChangesub = this.ingredientsService.ingredientAdded
+        this.ingredientAddedSubscription = this.ingredientsService.ingredientAdded
             .subscribe(newIngredientList => {
                 this.ingredients = newIngredientList;
             })
     }
 
     ngOnDestroy(){
-        this.igChangesub.unsubscribe();
+        this.ingredientAddedSubscription.unsubscribe();
+    }
+
+    onShoppingListItemSelected(index: number){
+        this.ingredientsService.emitIngredientSelected(index);
     }
 
 }
