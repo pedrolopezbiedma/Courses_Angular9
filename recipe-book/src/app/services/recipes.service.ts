@@ -11,7 +11,7 @@ export class RecipeService {
             'A test recipe', 
             'This is simply a test',
             'https://assets.epicurious.com/photos/5d49f1ea888da200097dce24/6:4/w_620%2Ch_413/TomatoesHerbs_RECIPE_073119_278.jpg',
-            [new Ingredient('Patata', 1)]
+            [new Ingredient('Patata', 1), new Ingredient('Huevos', 5)]
         ),
         new Recipe(
             '1',
