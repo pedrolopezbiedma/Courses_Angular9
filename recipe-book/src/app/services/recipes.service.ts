@@ -70,4 +70,9 @@ export class RecipeService {
 
         this.recipesUpdated.next(this.recipes);
     }
+
+    deleteRecipe(recipeId){
+        this.recipes.splice(this.recipes.indexOf(recipeId), 1);
+        this.recipesUpdated.next(this.recipes);
+    }
 }
