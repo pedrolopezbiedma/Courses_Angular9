@@ -1,56 +1,55 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { PostsService } from './posts.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
+  errorSubscription = new Subscription();
   loadedPosts = [];
+  isFetching = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private postsService: PostsService) {}
 
-  ngOnInit() {
-    this.fechtPosts();
-  }
-
-  private fechtPosts(){
-    this.http
-      .get('https://angular-test-ada86.firebaseio.com/posts.json')
-      .pipe(map(responseData => {
-        const postsArray = [];
-        for (const postKey in responseData) {
-          let post = responseData[postKey];
-          postsArray.push({...post, id: postKey})
-        }
-        return postsArray;
-      }))
-      .subscribe(responseData => {
-        this.loadedPosts = responseData;
-        console.log(this.loadedPosts);
+  private fetchPosts(){
+    this.isFetching = true;
+    this.errorSubscription = this.postsService.fetchPosts()
+      .subscribe(posts => {
+        this.isFetching = false;
+        this.loadedPosts = posts;
+      }, error => {
+        console.log(error);
       })
   }
 
-  onCreatePost(postData: { title: string; content: string }) {
-    // Send Http request
-    this.http
-      .post(
-        'https://angular-test-ada86.firebaseio.com/posts.json',
-        postData
-      )
-      .subscribe(responseData => {
-        console.log(responseData);
-      });
+  ngOnInit() {
+    this.postsService.error
+      .subscribe(error => {
+        console.log(error);
+      })
+
+    this.fetchPosts();
+  }
+
+  ngOnDestroy(){
+    this.errorSubscription.unsubscribe();
   }
 
   onFetchPosts() {
-    // Send Http request
-    this.fechtPosts();
+    this.fetchPosts();
+  }
+
+  onCreatePost(postData: { title: string; content: string }) {
+    this.postsService.submitPosts(postData);
   }
 
   onClearPosts() {
-    // Send Http request
+    this.postsService.clearPosts()
+      .subscribe(() => {
+        this.loadedPosts = []
+      })
   }
 }
