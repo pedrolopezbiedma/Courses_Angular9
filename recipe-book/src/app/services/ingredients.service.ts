@@ -8,10 +8,7 @@ export class IngredientsService {
     ingredientAdded = new Subject<Ingredient[]>();
     ingredientClicked = new Subject<Ingredient>();
     indexToEdit: number;
-    private ingredients: Ingredient[] = [
-        new Ingredient('Apples', 5),
-        new Ingredient('Tomatoes', 2)
-    ];
+    private ingredients: Ingredient[] = [];
 
     constructor() { }
     getIngredients(){

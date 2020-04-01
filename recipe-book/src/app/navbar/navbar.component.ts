@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataStorageService } from '../services/data-storage.service';
 
 @Component({
     selector: 'app-navbar',
@@ -9,6 +10,13 @@ import { Component } from '@angular/core';
 export class NavbarComponent {
     title = 'Navbar';
 
-    constructor() { }
+    constructor(private dataStorage: DataStorageService) { }
 
+    onStoreRecipes(){
+        this.dataStorage.storeRecipes();
+    }
+
+    onFetchRecipes(){
+        this.dataStorage.fetchRecipes();
+    }
 }
