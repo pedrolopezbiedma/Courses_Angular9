@@ -16,6 +16,7 @@ import { NoRecipeSelectedComponent } from './recipe-book/no-recipe-selected/no-r
 import { RecipeEditComponent } from './recipe-book/recipe-edit/recipe-edit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthComponent } from './auth/auth.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { AuthComponent } from './auth/auth.component';
     ToggleDropdownDirective,
     NoRecipeSelectedComponent,
     RecipeEditComponent,
-    AuthComponent
+    AuthComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
