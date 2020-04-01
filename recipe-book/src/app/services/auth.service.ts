@@ -15,14 +15,14 @@ export class AuthService {
                password: password,
                returnSecureToken: true
            } 
-        ).pipe(catchError(error => {
+        ).pipe(catchError(responseError => {
             let errorMessage = '';
-            if(!error.error.error || !error.error.error.message){
+            if(!responseError.error.error || !responseError.error.error.message){
                 errorMessage = 'An error ocurred.';
                 return throwError(errorMessage);
             }
 
-            switch (error.error.error.message) {
+            switch (responseError.error.error.message) {
                 case 'EMAIL_EXISTS':
                     errorMessage = 'The email address is already in use by another account.';
                     break;
@@ -33,5 +33,16 @@ export class AuthService {
             }
             return throwError(errorMessage);
         }));
+    }
+
+    logIn(email: string, password: string){
+        return this.httpClient.post(
+            'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDFmhNLSsVYU0QMNLkTZldD5jBqxTpoSN8',
+            {
+                email: email,
+                password: password,
+                returnSecureToken: true
+            } 
+        )
     }
 }
