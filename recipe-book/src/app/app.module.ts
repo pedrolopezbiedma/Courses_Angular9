@@ -14,9 +14,10 @@ import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-ed
 import { ToggleDropdownDirective } from './directives/ToggleDropdown/toggle-dropdown.directive';
 import { NoRecipeSelectedComponent } from './recipe-book/no-recipe-selected/no-recipe-selected.component';
 import { RecipeEditComponent } from './recipe-book/recipe-edit/recipe-edit.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { AuthInterceptor } from './auth/auth-interceptor.service';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

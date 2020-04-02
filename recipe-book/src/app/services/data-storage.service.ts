@@ -4,7 +4,6 @@ import { tap } from 'rxjs/operators';
 
 import { RecipeService } from './recipes.service';
 import { Recipe } from '../models/recipe.model';
-import { Ingredient } from '../models/ingredient.model';
 
 @Injectable({providedIn: 'root'})
 export class DataStorageService {

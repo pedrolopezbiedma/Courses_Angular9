@@ -15,6 +15,7 @@ class UserResponse {
 @Injectable({providedIn: 'root'})
 export class AuthService {
     authenticated = new Subject();
+    token = null;
 
     constructor(private httpClient: HttpClient) { }
  
@@ -53,6 +54,7 @@ export class AuthService {
     private handleAuthentication(responseData){
         let expirationDate = new Date(new Date().getTime() + <number>responseData.expiresIn * 1000);
         let authenticatedUser = new User(responseData.email, responseData.localId, responseData.idToken, expirationDate );
+        this.token = authenticatedUser.token;
         this.authenticated.next(authenticatedUser);       
     }
 
