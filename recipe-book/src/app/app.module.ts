@@ -1,7 +1,8 @@
-import { AppRoutingModule } from './app-routing.module';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -11,13 +12,13 @@ import { RecipeItemComponent } from './recipe-book/recipe-list/recipe-item/recip
 import { RecipeDetailComponent } from './recipe-book/recipe-detail/recipe-detail.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
-import { ToggleDropdownDirective } from './directives/ToggleDropdown/toggle-dropdown.directive';
 import { NoRecipeSelectedComponent } from './recipe-book/no-recipe-selected/no-recipe-selected.component';
 import { RecipeEditComponent } from './recipe-book/recipe-edit/recipe-edit.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthComponent } from './auth/auth.component';
-import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { AuthInterceptor } from './auth/auth-interceptor.service';
+import { LoadingSpinnerComponent } from './aux-components/loading-spinner/loading-spinner.component';
+import { LoggingAlertComponent } from './aux-components/logging-alert/logging-alert.component';
+import { ToggleDropdownDirective } from './directives/ToggleDropdown/toggle-dropdown.directive';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { AuthInterceptor } from './auth/auth-interceptor.service';
     NoRecipeSelectedComponent,
     RecipeEditComponent,
     AuthComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    LoggingAlertComponent
   ],
   imports: [
     BrowserModule,
