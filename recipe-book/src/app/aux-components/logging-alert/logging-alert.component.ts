@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-logging-alert',
@@ -8,9 +8,13 @@ import { Component, OnInit, Input } from '@angular/core';
 export class LoggingAlertComponent implements OnInit {
 
   @Input() message: string; 
+  @Output() close = new EventEmitter<void>();
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onClose(){
+    this.close.emit();
+  }
 }
