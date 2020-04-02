@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DataStorageService } from '../services/data-storage.service';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+
+import { DataStorageService } from '../services/data-storage.service';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -15,7 +17,8 @@ export class NavbarComponent implements OnInit, OnDestroy{
     title = 'Navbar';
 
     constructor(private dataStorage: DataStorageService,
-                private authService: AuthService) { }
+                private authService: AuthService,
+                private router: Router) { }
 
     ngOnInit(){
         this.authSubscription = this.authService.authenticated
@@ -34,7 +37,8 @@ export class NavbarComponent implements OnInit, OnDestroy{
     }
 
     onLogout(){
-
+        this.authService.logOut();
+        this.router.navigate(['auth']);
     }
     
     ngOnDestroy(){
