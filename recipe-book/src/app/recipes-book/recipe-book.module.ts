@@ -18,12 +18,6 @@ import { RecipesRoutingModule } from './recipes-routing.module';
         RecipesRoutingModule,
     ],
     exports: [
-        RecipeBookComponent,
-        RecipeListComponent,
-        RecipeItemComponent,
-        RecipeEditComponent,
-        RecipeDetailComponent,
-        NoRecipeSelectedComponent
     ],
     declarations: [
         RecipeBookComponent,

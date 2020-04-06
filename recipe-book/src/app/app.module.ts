@@ -6,36 +6,34 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AuthComponent } from './auth/auth.component';
+import { AuthInterceptor } from './auth/auth-interceptor.service';
 
 import { RecipeBookModule } from './recipes-book/recipe-book.module';
 
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
-import { AuthComponent } from './auth/auth.component';
-import { AuthInterceptor } from './auth/auth-interceptor.service';
 import { LoadingSpinnerComponent } from './aux-components/loading-spinner/loading-spinner.component';
 import { LoggingAlertComponent } from './aux-components/logging-alert/logging-alert.component';
 import { ToggleDropdownDirective } from './directives/ToggleDropdown/toggle-dropdown.directive';
+import { ShoppingListModule } from './shopping-list/shopping-list.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
     AuthComponent,
     ToggleDropdownDirective,
     LoadingSpinnerComponent,
     LoggingAlertComponent
   ],
   imports: [
-    RecipeBookModule,
+    AppRoutingModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule,
+    RecipeBookModule,
+    ShoppingListModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
