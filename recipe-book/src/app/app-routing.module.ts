@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AuthComponent } from './auth/auth.component';
+import { RecipeBookComponent } from './recipes-book/recipe-book.component';
 
 export const appRoutes: Routes = [
-    { path: 'auth', component: AuthComponent }
+    { path: '', component: RecipeBookComponent },
 ];
 
 @NgModule({
