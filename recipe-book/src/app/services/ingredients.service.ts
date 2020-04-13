@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { Ingredient } from '../models/ingredient.model';
+import { AddIngredientAction, AddIngredientsAction } from '../shopping-list/store/shopping-list.actions';
 
 @Injectable({providedIn: 'root'})
 export class IngredientsService {
@@ -10,7 +12,10 @@ export class IngredientsService {
     indexToEdit: number;
     private ingredients: Ingredient[] = [];
 
-    constructor() { }
+    constructor(
+        private store: Store<{ shoppingList: { ingredients: Ingredient[] }}> 
+    ) { }
+
     getIngredients(){
         return this.ingredients.slice();
     }
@@ -21,15 +26,17 @@ export class IngredientsService {
     }
 
     addIngredient(newIngredient: Ingredient){
-        this.ingredients.push(newIngredient);
-        this.ingredientAdded.next(this.ingredients);
+        //this.ingredients.push(newIngredient);
+        //this.ingredientAdded.next(this.ingredients);
+        this.store.dispatch(new AddIngredientAction(newIngredient));
     }
 
     addIngredientsFromRecipe(ingredients: Ingredient[]){
-        ingredients.forEach(ingredient => {
-            this.ingredients.push(ingredient);
-        })
-        this.ingredientAdded.next(this.ingredients);
+        //ingredients.forEach(ingredient => {
+        //    this.ingredients.push(ingredient);
+        //})
+        //this.ingredientAdded.next(this.ingredients);
+        this.store.dispatch(new AddIngredientsAction(ingredients))
     }
 
     editIngredient(editedIngredient: Ingredient){

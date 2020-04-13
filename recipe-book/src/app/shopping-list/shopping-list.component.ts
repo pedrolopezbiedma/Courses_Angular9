@@ -12,15 +12,14 @@ import { IngredientsService } from '../services/ingredients.service';
 })
 
 export class ShoppingListComponent implements OnInit{
-    //ingredients: Ingredient[] = [ ];
     ingredients: Observable<{ ingredients: Ingredient[] }>;
+    
     constructor(private ingredientsService: IngredientsService,
                 private store: Store<{ shoppingList: { ingredients: Ingredient[] }}>
     ) { }
 
     ngOnInit(){
         this.ingredients = this.store.select('shoppingList');
-
     }
 
     onShoppingListItemSelected(index: number){
