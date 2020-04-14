@@ -1,9 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 import { DataStorageService } from '../services/data-storage.service';
 import { AuthService } from '../services/auth.service';
+import { LogOutAction } from '../auth/store/auth.actions';
+import * as fromApp from '../store/app.reducer'
 
 @Component({
     selector: 'app-navbar',
@@ -17,16 +20,14 @@ export class NavbarComponent implements OnInit, OnDestroy{
     title = 'Navbar';
 
     constructor(private dataStorage: DataStorageService,
-                private authService: AuthService,
-                private router: Router) { }
+                private router: Router,
+                private store: Store<fromApp.AppState>) { }
 
     ngOnInit(){
-        this.authSubscription = this.authService.authenticated
-            .subscribe(authenticatedUser => {
-                console.log('Usuario authenticado en el navbar');
-                console.log(authenticatedUser);
-                authenticatedUser ? this.isAuthenticated = true : this.isAuthenticated = false;
-            })
+        this.authSubscription = this.store.select('auth').subscribe(storeData => {
+            storeData.user ? this.isAuthenticated = true : this.isAuthenticated = false;
+        })
+
     }
     onStoreRecipes(){
         this.dataStorage.storeRecipes();
@@ -37,7 +38,8 @@ export class NavbarComponent implements OnInit, OnDestroy{
     }
 
     onLogout(){
-        this.authService.logOut();
+        //this.authService.logOut();
+        this.store.dispatch(new LogOutAction());
         this.router.navigate(['auth']);
     }
     

@@ -10,7 +10,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AuthInterceptor } from './auth/auth-interceptor.service';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
-import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer';
+import * as fromApp from './store/app.reducer';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { shoppingListReducer } from './shopping-list/store/shopping-list.reducer
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
-    StoreModule.forRoot({ shoppingList: shoppingListReducer }),
+    StoreModule.forRoot(fromApp.appReducers),
     AuthModule,
     SharedModule
   ],
