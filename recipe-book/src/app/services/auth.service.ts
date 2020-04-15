@@ -57,17 +57,10 @@ export class AuthService {
     }
 
     logOut(){
-        //this.authenticated.next(null);
         this.store.dispatch(new LogOutAction());
     }
     
     private handleAuthentication(responseData){
-        /**
-        let expirationDate = new Date(new Date().getTime() + <number>responseData.expiresIn * 1000);
-        let authenticatedUser = new User(responseData.email, responseData.localId, responseData.idToken, expirationDate );
-        this.token = authenticatedUser.token;
-        this.authenticated.next(authenticatedUser);       
-        */
         let expirationDate = new Date(new Date().getTime() + <number>responseData.expiresIn * 1000);
         this.store.dispatch(new LogInAction(
             { email: responseData.email, id: responseData.localId, token: responseData.idToken, expDate: expirationDate }
