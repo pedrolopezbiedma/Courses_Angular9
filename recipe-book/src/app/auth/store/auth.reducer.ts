@@ -1,5 +1,5 @@
 import { User } from 'src/app/models/user.model';
-import { AuthActions, AUTH_SUCCESS, AUTH_ERROR, LOG_OUT }  from '../store/auth.actions'
+import { AUTH_SUCCESS, AUTH_ERROR, LOG_OUT, CLEAR_ERROR, AuthActions}  from '../store/auth.actions'
 
 export interface State {
     user: User,
@@ -34,6 +34,7 @@ export function authReducer(state: State = initState , action: AuthActions ) {
             }
             return newState;
 
+        case CLEAR_ERROR:
         case LOG_OUT:
             newState = {
                 ...state,

@@ -7,6 +7,8 @@ import { Store } from '@ngrx/store';
 import * as fromApp from '../store/app.reducer';
 import { AuthSuccessAction, LogOutAction } from '../auth/store/auth.actions'
 
+// ***** NOT BEING USED *****
+
 class UserResponse {
     email: string;
     id: string;
