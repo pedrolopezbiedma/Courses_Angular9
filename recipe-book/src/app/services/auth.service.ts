@@ -5,7 +5,7 @@ import { throwError, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 import * as fromApp from '../store/app.reducer';
-import { LogInAction, LogOutAction } from '../auth/store/auth.actions'
+import { AuthSuccessAction, LogOutAction } from '../auth/store/auth.actions'
 
 class UserResponse {
     email: string;
@@ -62,7 +62,7 @@ export class AuthService {
     
     private handleAuthentication(responseData){
         let expirationDate = new Date(new Date().getTime() + <number>responseData.expiresIn * 1000);
-        this.store.dispatch(new LogInAction(
+        this.store.dispatch(new AuthSuccessAction(
             { email: responseData.email, id: responseData.localId, token: responseData.idToken, expDate: expirationDate }
         ));
     }

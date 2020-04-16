@@ -17,18 +17,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
 
-    /**
-    if(!this.store.select('auth')){
-        return next.handle(req);
-    }
-
-    let editedRequest = req.clone({ 
-        params: new HttpParams().set('auth', this.authService.token)
-    });
-
-    return next.handle(editedRequest);
-      */
-
     return this.store.select('auth').pipe(
       take(1),
       map(authState => {

@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { NgForm } from '@angular/forms';
 
-import { AuthService } from '../services/auth.service';
 import * as fromApp from '../store/app.reducer';
-import { StartLogInAction } from './store/auth.actions';
+import { StartLogInAction, StartSignupAction } from './store/auth.actions';
 
 @Component({
   selector: 'app-auth',
@@ -19,11 +17,18 @@ export class AuthComponent implements OnInit {
   authError = null;
   observable = new Observable();
 
-  constructor(private authService: AuthService,
-              private router: Router,
-              private store: Store<fromApp.AppState>) { }
+  constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
+
+    this.store.select('auth')
+      .subscribe(storeData => {
+        this.isLoading = storeData.isLoading;
+        if(storeData.loginError){
+          this.authError = storeData.loginError
+        }
+        //console.log(storeData);
+      })
   }
 
   onSubmit(authForm: NgForm){
@@ -34,19 +39,11 @@ export class AuthComponent implements OnInit {
       this.store.dispatch(new StartLogInAction(authForm.value.email, authForm.value.password));
     }
     else{
-      this.observable = this.authService.signIn(authForm.value.email, authForm.value.password)
+      //this.observable = this.authService.signIn(authForm.value.email, authForm.value.password)
+      this.store.dispatch(new StartSignupAction(authForm.value.email, authForm.value.password));
     }
 
-    this.observable
-      .subscribe(response => {
-        this.isLoading = false;
-        this.router.navigate(['recipes-book'])
-      },
-      error => {
-        this.isLoading = false;
-        this.authError = error;
-      });
-      authForm.reset();
+    authForm.reset();
   }
 
   onHandleClose(){
